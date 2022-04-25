@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 
 <head>
     <!-- Required meta tags -->
@@ -28,8 +28,16 @@
         mark {
             border: 1px solid black;
         }
+
+        p#moji_count:before {
+            content: '[文字数';
+        }
+
+        p#moji_count:after {
+            content: ']';
+        }
     </style>
-    <title>Hello, world!</title>
+    <title>研究骨子ジェネレータ</title>
 </head>
 
 <body>
@@ -75,8 +83,14 @@
 
                     let = outline = `<mark>${a1}</mark>において、<mark>${a2}</mark>は広く知られている。<mark>${a2}</mark>ではこれまで<mark>${a3}</mark>に関する問題点があった。そこで我々は<mark>${a4}</mark>を利用することでこの問題を解決する。また、将来的には<mark>${a5}</mark>も実現可能となる。`;
                     document.querySelector('#outline').innerHTML = outline;
+
+                    let no_tag_text = outline.replace(/(<([^>]+)>)/gi, '');
+                    document.querySelector('#moji_count').innerHTML = no_tag_text.length;
                 }
             </script>
+        </p>
+        <p id="moji_count" class="text-muted small" style="text-align:right">
+
         </p>
 
         <hr>
