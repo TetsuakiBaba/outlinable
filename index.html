@@ -18,15 +18,11 @@
         body {}
 
         p {
-            line-height: 1.8em;
+            line-height: 2.0em;
         }
 
-        mark:before {
-            content: ""
-        }
-
-        mark {
-            border: 1px solid black;
+        box {
+            border-bottom: 1px solid black;
         }
 
         p#moji_count:before {
@@ -35,6 +31,20 @@
 
         p#moji_count:after {
             content: ']';
+        }
+
+        [data-ruby] {
+            position: relative;
+        }
+
+        [data-ruby]::before {
+            content: attr(data-ruby);
+            position: absolute;
+            top: 0.6em;
+            left: -0.5em;
+            right: 0;
+            margin: auto;
+            font-size: 1.0em;
         }
     </style>
     <title>研究骨子ジェネレータ</title>
@@ -67,31 +77,33 @@
             <input type="text" class="form-control" value="端末やキーボードを汚さずにyoutubeを閲覧できること" id="a5" oninput="update();">
         </div>
 
-        <h5>研究アウトライン</h5>
-        <p id="outline">
-            <script>
-                window.onload = function () {
-                    update();
-                }
-                function update() {
-                    console.log(document.querySelector("#a1"));
-                    let a1 = document.querySelector("#a1").value;
-                    let a2 = document.querySelector("#a2").value;
-                    let a3 = document.querySelector("#a3").value;
-                    let a4 = document.querySelector("#a4").value;
-                    let a5 = document.querySelector("#a5").value;
+        <div class="alert alert-dark" role="alert">
+            <h5 class="alert-heading">研究アウトライン</h5>
+            <hr>
+            <p id="outline">
+                <script>
+                    window.onload = function () {
+                        update();
+                    }
+                    function update() {
+                        console.log(document.querySelector("#a1"));
+                        let a1 = document.querySelector("#a1").value;
+                        let a2 = document.querySelector("#a2").value;
+                        let a3 = document.querySelector("#a3").value;
+                        let a4 = document.querySelector("#a4").value;
+                        let a5 = document.querySelector("#a5").value;
 
-                    let = outline = `<mark>${a1}</mark>において、<mark>${a2}</mark>は広く知られている。<mark>${a2}</mark>ではこれまで<mark>${a3}</mark>に関する問題点があった。そこで我々は<mark>${a4}</mark>を利用することでこの問題を解決する。また、将来的には<mark>${a5}</mark>も実現可能となる。`;
-                    document.querySelector('#outline').innerHTML = outline;
+                        let = outline = `<box data-ruby="①">${a1}</box>において、<box data-ruby='②'>${a2}</box>は広く知られている。<box data-ruby='②'>${a2}</box>ではこれまで<box data-ruby='③'>${a3}</box>に関する問題点があった。そこで我々は<box data-ruby='④'>${a4}</box>を利用することでこの問題を解決する。また、将来的には<box data-ruby='⑤'>${a5}</box>も実現可能となる。`;
+                        document.querySelector('#outline').innerHTML = outline;
 
-                    let no_tag_text = outline.replace(/(<([^>]+)>)/gi, '');
-                    document.querySelector('#moji_count').innerHTML = no_tag_text.length;
-                }
-            </script>
-        </p>
-        <p id="moji_count" class="text-muted small" style="text-align:right">
+                        let no_tag_text = outline.replace(/(<([^>]+)>)/gi, '');
+                        document.querySelector('#moji_count').innerHTML = no_tag_text.length;
+                    }
+                </script>
+            </p>
+            <p id="moji_count" class="text-muted small" style="text-align:right;padding:0px;margin:0px"></p>
 
-        </p>
+        </div>
 
         <hr>
         <footer class="small text-muted text-center">
