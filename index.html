@@ -9,6 +9,8 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,8 +54,17 @@
 
 <body>
     <div class="container-sm">
-        <h1>outlinable</h1>
-        <div class="mb-3">
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1">
+                    <i class="bi bi-ui-checks-grid"></i>
+                    outlinable
+                </span>
+                <span class="small text-muted">研究骨子ジェネレータ</span>
+            </div>
+        </nav>
+
+        <div class="mb-3 mt-4">
             <label for="exampleFormControlInput1" class="form-label">① あなたの俯瞰的な研究領域</label>
             <input type="text" class="form-control" value="スナック菓子業界" id="a1" oninput="update();">
         </div>
@@ -78,7 +89,7 @@
         </div>
 
         <div class="alert alert-dark" role="alert">
-            <h5 class="alert-heading">研究アウトライン</h5>
+            <h5 class="alert-heading">研究骨子 <span class="small text-muted"></span></h5>
             <hr>
             <p id="outline">
                 <script>
@@ -93,7 +104,7 @@
                         let a4 = document.querySelector("#a4").value;
                         let a5 = document.querySelector("#a5").value;
 
-                        let = outline = `<box data-ruby="①">${a1}</box>において、<box data-ruby='②'>${a2}</box>は広く知られている。<box data-ruby='②'>${a2}</box>ではこれまで<box data-ruby='③'>${a3}</box>に関する問題点があった。そこで我々は<box data-ruby='④'>${a4}</box>を利用することでこの問題を解決する。また、将来的には<box data-ruby='⑤'>${a5}</box>も実現可能となる。`;
+                        let = outline = `<box data-ruby="①">${a1}</box>において、<box data-ruby='②'>${a2}</box>は広く知られている。<box data-ruby='②'>${a2}</box>ではこれまで<box data-ruby='③'>${a3}</box>に関する問題があった。そこで我々は<box data-ruby='④'>${a4}</box>を利用することでこの問題を解決する。これにより、将来的には<box data-ruby='⑤'>${a5}</box>も期待できる。`;
                         document.querySelector('#outline').innerHTML = outline;
 
                         let no_tag_text = outline.replace(/(<([^>]+)>)/gi, '');
@@ -107,7 +118,11 @@
 
         <hr>
         <footer class="small text-muted text-center">
-            2022 &copy; Tetsuaki Baba
+            &copy; 2022 <a href="https://tetsuakibaba.jp" target="_blank"
+                class="link-secondary text-decoration-none">Tetsuaki BABA</a>
+            <a href="" class="link-secondary"><i class="bi-github" role="img" aria-label="GitHub"></i></a>
+
+
         </footer>
     </div>
 
