@@ -53,42 +53,88 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-sm">
+
+            <span class="navbar-brand mb-0 h1">
+                <i class="bi bi-ui-checks-grid"></i>
+                outlinable
+            </span>
+            <span class="small text-muted">研究骨子ジェネレータ</span>
+        </div>
+    </nav>
+
+
     <div class="container-sm">
-        <nav class="navbar navbar-light bg-light">
-            <div class="container-fluid">
-                <span class="navbar-brand mb-0 h1">
-                    <i class="bi bi-ui-checks-grid"></i>
-                    outlinable
-                </span>
-                <span class="small text-muted">研究骨子ジェネレータ</span>
-            </div>
-        </nav>
+
+        <p class="mt-4">
+            穴埋め方式で研究やレポート骨子の作成を支援するページです。まずは①〜⑤までの記入欄を埋めてください。すると自動的にあなたのお話の骨子ができあがります。とにかく試してみるだけの場合は、下の「回答例を自動入力」ボタンを押してみましょう。研究骨子が出来上がったら画面一番下にある赤ボタン「さらに研究っぽくする」ボタンでより研究っぽい骨子を目指しましょう。
+        </p>
+        <div class="mt-4 d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-primary" type="button" onclick="autoFillin(this);">回答例を自動入力</button>
+            <script>
+                function autoFillin(dom) {
+                    console.log(dom)
+
+                    let list_answers = [
+                        [
+                            'スナック菓子業界',
+                            'ポテトチップス等の揚げ物菓子',
+                            '食事中における手指への油脂付着',
+                            '割り箸利用',
+                            '端末やキーボードを汚さずにyoutubeを閲覧できること'
+                        ],
+                        [
+                            '共生社会',
+                            '若者への就労支援',
+                            '家庭内介護により働く時間や就労の機会損失',
+                            'ヤングケアラー脱出を目的とした就労支援',
+                            '労働価値の高い若者が社会参画'
+                        ]
+                    ];
+                    let answers = list_answers[parseInt(Math.random() * list_answers.length)];
+                    console.log(answers);
+                    let count = 1;
+                    for (answer of answers) {
+                        document.querySelector(`#a${count}`).value = answer;
+                        count++;
+                    }
+                    update();
+                }
+            </script>
+        </div>
+        <hr>
 
         <div class="mb-3 mt-4">
-            <label for="exampleFormControlInput1" class="form-label">① あなたの俯瞰的な研究領域</label>
-            <input type="text" class="form-control" value="スナック菓子業界" id="a1" oninput="update();">
+            <label for="exampleFormControlInput1" class="form-label"><span style="font-size:1.5em">①</span>
+                あなたの取り組む研究領域</label>
+            <input type="text" class="form-control" value="" id="a1" oninput="update();">
         </div>
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">② その領域で特にあなたが取り組む対象</label>
-            <input type="text" class="form-control" value="ポテトチップス等の揚げ物菓子" id="a2" oninput="update();">
+            <label for="exampleFormControlInput1" class="form-label"><span style="font-size:1.5em">②</span>
+                ①で特にあなたが取り組む対象</label>
+            <input type="text" class="form-control" value="" id="a2" oninput="update();">
         </div>
 
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">③ ②における既存の問題点</label>
-            <input type="text" class="form-control" value="食事中における手指への油脂付着" id="a3" oninput="update();">
+            <label for="exampleFormControlInput1" class="form-label"><span style="font-size:1.5em">③</span>
+                ②における既存の問題点</label>
+            <input type="text" class="form-control" value="" id="a3" oninput="update();">
         </div>
 
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">④ ③を解決するための手法</label>
-            <input type="text" class="form-control" value="割り箸利用" id="a4" oninput="update();">
+            <label for="exampleFormControlInput1" class="form-label"><span style="font-size:1.5em">④</span>
+                ③を解決するための手法</label>
+            <input type="text" class="form-control" value="" id="a4" oninput="update();">
         </div>
 
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">⑤ ③を解決することで実現できること</label>
-            <input type="text" class="form-control" value="端末やキーボードを汚さずにyoutubeを閲覧できること" id="a5" oninput="update();">
+            <label for="exampleFormControlInput1" class="form-label"><span style="font-size:1.5em">⑤</span>
+                ③を解決することで実現できること</label>
+            <input type="text" class="form-control" value="" id="a5" oninput="update();">
         </div>
 
-        <div class="alert alert-dark" role="alert">
+        <div class="alert alert-success" role="alert">
             <h5 class="alert-heading">研究骨子 <span class="small text-muted"></span></h5>
             <hr>
             <p id="outline">
@@ -115,7 +161,23 @@
             <p id="moji_count" class="text-muted small" style="text-align:right;padding:0px;margin:0px"></p>
 
         </div>
-
+        <p class="mt-4">
+            研究骨子が出来上がったら、下の「更に研究っぽくする」ボタンを押してください。④の項目が①に代入されることで更に具体的にご自身の研究を述べる為、より研究内容が具体的にパワーアップします。
+        </p>
+        <div class="mt-4 d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-danger" type="button" onclick="revolve(this);">更に研究っぽくする</button>
+            <script>
+                function revolve(dom) {
+                    if (confirm('④が①に移動し、それ以外の記入内容が消去されます。よろしいですか？')) {
+                        document.querySelector('#a1').value = document.querySelector('#a4').value;
+                        for (let i = 2; i <= 5; i++) {
+                            document.querySelector(`#a${i}`).value = "";
+                        }
+                        update();
+                    }
+                }
+            </script>
+        </div>
         <hr>
         <footer class="small text-muted text-center">
             &copy; 2022 <a href="https://tetsuakibaba.jp" target="_blank"
