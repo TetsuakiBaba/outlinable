@@ -5,7 +5,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <!-- manifest.json -->
+    <link rel="manifest" href="./manifest.json">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -68,41 +69,61 @@
     <div class="container-sm">
 
         <p class="mt-4">
-            穴埋め方式で研究やレポート骨子の作成を支援するページです。まずは①〜⑤までの記入欄を埋めてください。すると自動的にあなたのお話の骨子ができあがります。とにかく試してみるだけの場合は、下の「回答例を自動入力」ボタンを押してみましょう。研究骨子が出来上がったら画面一番下にある赤ボタン「さらに研究っぽくする」ボタンでより研究っぽい骨子を目指しましょう。
-        </p>
-        <div class="mt-4 d-grid gap-2 col-6 mx-auto">
-            <button class="btn btn-primary" type="button" onclick="autoFillin(this);">回答例を自動入力</button>
-            <script>
-                function autoFillin(dom) {
-                    console.log(dom)
+        <div class="row alert alert-primary d-flex align-items-center" role="alert">
+            <div class="col-sm-12">
+                <h5 class="alert-heading"><i class="bi bi-info-circle me-1"></i> 使い方 <span
+                        class="small text-muted"></span></h5>
+                <hr>
+                <div>
 
-                    let list_answers = [
-                        [
-                            'スナック菓子業界',
-                            'ポテトチップス等の揚げ物菓子',
-                            '食事中における手指への油脂付着',
-                            '割り箸利用',
-                            '端末やキーボードを汚さずにyoutubeを閲覧できること'
-                        ],
-                        [
-                            '共生社会',
-                            '若者への就労支援',
-                            '家庭内介護により働く時間や就労の機会損失',
-                            'ヤングケアラー脱出を目的とした就労支援',
-                            '労働価値の高い若者が社会参画'
-                        ]
-                    ];
-                    let answers = list_answers[parseInt(Math.random() * list_answers.length)];
-                    console.log(answers);
-                    let count = 1;
-                    for (answer of answers) {
-                        document.querySelector(`#a${count}`).value = answer;
-                        count++;
+                    穴埋め方式で研究やレポート骨子の作成を支援するページです。まずは①〜⑤までの記入欄を埋めてください。すると自動的にあなたのお話の骨子ができあがります。とにかく試してみるだけの場合は、下の「回答例を自動入力」ボタンを押してみましょう。研究骨子が出来上がったら画面一番下にある赤ボタン「さらに研究っぽくする」ボタンでより研究っぽい骨子を目指しましょう。
+                </div>
+            </div>
+
+            <div class="mt-4 d-grid gap-2 col-sm-12 mx-auto">
+                <button class="btn btn-primary" type="button" onclick="autoFillin(this);">回答例を自動入力</button>
+                <script>
+                    function autoFillin(dom) {
+                        console.log(dom)
+
+                        let list_answers = [
+                            [
+                                'スナック菓子業界',
+                                'ポテトチップス等の揚げ物菓子',
+                                '食事中における手指への油脂付着',
+                                '割り箸利用',
+                                '端末やキーボードを汚さずにyoutubeを閲覧できること'
+                            ],
+                            [
+                                '共生社会',
+                                '若者への就労支援',
+                                '家庭内介護により働く時間や就労の機会損失',
+                                'ヤングケアラー脱出を目的とした就労支援',
+                                '労働価値の高い若者が社会参画'
+                            ],
+                            [
+                                '洋楽ロック',
+                                'ローリングストーンズ',
+                                'バンドメンバーの高年齢化',
+                                'オーディションによるバンドメンバーの交代',
+                                '永続的なバンド活動'
+                            ]
+                        ];
+                        let answers = list_answers[parseInt(Math.random() * list_answers.length)];
+                        console.log(answers);
+                        let count = 1;
+                        for (answer of answers) {
+                            document.querySelector(`#a${count}`).value = answer;
+                            count++;
+                        }
+                        update();
                     }
-                    update();
-                }
-            </script>
+                </script>
+            </div>
         </div>
+
+        </p>
+
         <hr>
 
         <div class="mb-3 mt-4">
@@ -189,10 +210,16 @@
         </div>
         <hr>
         <footer class="small text-muted text-center">
-            &copy; 2022 <a href="https://tetsuakibaba.jp" target="_blank"
+            &copy; <span id="year_and_version"></span> <a href="https://tetsuakibaba.jp" target="_blank"
                 class="link-secondary text-decoration-none">Tetsuaki BABA</a>
             <a href="" class="link-secondary"><i class="bi-github" role="img" aria-label="GitHub"></i></a>
+            <script>
+                // 現在のyearと manifest.jsonからバージョンを取得して span#year_and_version に表示
+                fetch('./manifest.json').then(response => response.json()).then(data => {
+                    document.querySelector('#year_and_version').innerHTML = new Date().getFullYear() + ', v' + data.version;
+                });
 
+            </script>
 
         </footer>
     </div>
