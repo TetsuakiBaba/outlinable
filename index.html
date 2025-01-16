@@ -112,25 +112,29 @@
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label"><span style="font-size:1.5em">②</span>
-                ①で特にあなたが取り組む対象</label>
+                <box data-ruby='①'><span id="b2"></span></box>で特にあなたが取り組む対象
+            </label>
             <input type="text" class="form-control" value="" id="a2" oninput="update();">
         </div>
 
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label"><span style="font-size:1.5em">③</span>
-                ②における既存の問題点</label>
+                <box data-ruby='②'><span id="b3"></span></box>における既存の問題点
+            </label>
             <input type="text" class="form-control" value="" id="a3" oninput="update();">
         </div>
 
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label"><span style="font-size:1.5em">④</span>
-                ③を解決するための手法</label>
+                <box data-ruby='③'><span id="b4"></span></box>を解決するための手法
+            </label>
             <input type="text" class="form-control" value="" id="a4" oninput="update();">
         </div>
 
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label"><span style="font-size:1.5em">⑤</span>
-                ③を解決することで実現できること</label>
+                <box data-ruby='③'><span id="b5"></span></box>を解決することで実現できること
+            </label>
             <input type="text" class="form-control" value="" id="a5" oninput="update();">
         </div>
 
@@ -151,6 +155,11 @@
                         let a5 = document.querySelector("#a5").value;
 
                         let = outline = `<box data-ruby="①">${a1}</box>において、<box data-ruby='②'>${a2}</box>は広く知られている。<box data-ruby='②'>${a2}</box>ではこれまで<box data-ruby='③'>${a3}</box>に関する問題があった。そこで我々は<box data-ruby='④'>${a4}</box>を利用することでこの問題を解決する。これにより、将来的には<box data-ruby='⑤'>${a5}</box>も期待できる。`;
+
+                        document.querySelector('#b2').innerHTML = a1;
+                        document.querySelector('#b3').innerHTML = a2;
+                        document.querySelector('#b4').innerHTML = a3;
+                        document.querySelector('#b5').innerHTML = a3;
                         document.querySelector('#outline').innerHTML = outline;
 
                         let no_tag_text = outline.replace(/(<([^>]+)>)/gi, '');
